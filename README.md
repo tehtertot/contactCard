@@ -1,0 +1,1 @@
+A dynamic webpage allowing a user to input contact cards and view their details.

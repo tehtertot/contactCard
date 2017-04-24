@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Codingdojo contact page</title>
+    <link rel="stylesheet" href="contactCard.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var cards = [];
+        var card = {};
+        $(document).on('click', '.add', function(){
+          card.name = $('.first').val() + " " + $('.last').val();
+          card.desc = $('.desc').val();
+          cards.push(card);
+          console.log(cards);
+          $('.cards').append('<div class="card"><h2>' + $('.first').val() + " " + $('.last').val() + '</h2><p class="description">Click for description!</p></div>');
+          return false;
+        });
+        $(document).on('click', '.description', function() {
+          $(this).parents('.card').html('<p>Show description</p>');
+        });
+      })
+    </script>
+  </head>
+  <body>
+    <div class="addCard">
+      <h3>Add A Card:</h3>
+      <form class="add_card" action="index.html" method="post">
+        <label for="first">First Name:</label>
+        <input type="text" name="first_name" value="" class="first">
+        <br>
+        <label for="last">Last Name:</label>
+        <input type="text" name="last_name" value="" class="last">
+        <br>
+        <label for="desc">Description:</label>
+        <br>
+        <textarea name="desc" rows="4" cols="36" class="desc"></textarea>
+        <br>
+        <input type="submit" name="submit" value="Add User" class="add">
+      </form>
+    </div>
+    <div class="cards">
+      <h3>Cards:</h3>
+    </div>
+  </body>
+</html>
