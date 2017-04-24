@@ -7,21 +7,12 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
-        var card = {};
         $(document).on('click', '.add', function(){
-          card.name = $('.first').val() + " " + $('.last').val();
-          card.desc = $('.desc').val();
-          $('.cards').append('<div class="card"><p class="description">' + card.desc + '</p><h2>' + card.name + '</h2><p class="clickFor">Click for description!</p></div>');
+          $('.cards').append('<div class="card"><p class="description">' + $('.desc').val() + '</p><h2>' + $('.first').val() + ' ' + $('.last').val() + '</h2><p class="clickFor">Click for description!</p></div>');
           return false;
         });
-        $(document).on('click', '.clickFor', function() {
-          $(this).css('visibility','hidden');
-          $(this).siblings('h2').css('visibility','hidden');
-          $(this).siblings('.description').css('visibility', 'visible');
-        });
-        $(document).on('click', '.description', function() {
-          $(this).css('visibility','hidden');
-          $(this).siblings('h2, .clickFor').css('visibility','visible');
+        $(document).on('click', '.card', function() {
+          $(this).children().toggle();
         });
       })
     </script>
