@@ -7,18 +7,21 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
-        var cards = [];
         var card = {};
         $(document).on('click', '.add', function(){
           card.name = $('.first').val() + " " + $('.last').val();
           card.desc = $('.desc').val();
-          cards.push(card);
-          console.log(cards);
-          $('.cards').append('<div class="card"><h2>' + $('.first').val() + " " + $('.last').val() + '</h2><p class="description">Click for description!</p></div>');
+          $('.cards').append('<div class="card"><p class="description">' + card.desc + '</p><h2>' + card.name + '</h2><p class="clickFor">Click for description!</p></div>');
           return false;
         });
+        $(document).on('click', '.clickFor', function() {
+          $(this).css('visibility','hidden');
+          $(this).siblings('h2').css('visibility','hidden');
+          $(this).siblings('.description').css('visibility', 'visible');
+        });
         $(document).on('click', '.description', function() {
-          $(this).parents('.card').html('<p>Show description</p>');
+          $(this).css('visibility','hidden');
+          $(this).siblings('h2, .clickFor').css('visibility','visible');
         });
       })
     </script>
@@ -27,13 +30,13 @@
     <div class="addCard">
       <h3>Add A Card:</h3>
       <form class="add_card" action="index.html" method="post">
-        <label for="first">First Name:</label>
+        <label>First Name:</label>
         <input type="text" name="first_name" value="" class="first">
         <br>
-        <label for="last">Last Name:</label>
+        <label>Last Name:</label>
         <input type="text" name="last_name" value="" class="last">
         <br>
-        <label for="desc">Description:</label>
+        <label>Description:</label>
         <br>
         <textarea name="desc" rows="4" cols="36" class="desc"></textarea>
         <br>
@@ -41,7 +44,7 @@
       </form>
     </div>
     <div class="cards">
-      <h3>Cards:</h3>
+      <h3>Contact Cards:</h3>
     </div>
   </body>
 </html>
